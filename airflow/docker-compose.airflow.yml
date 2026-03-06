@@ -105,12 +105,7 @@ services:
   # ── One-shot initialisation (runs once, then exits with code 0) ─────────────
   airflow-init:
     <<: *airflow-common
-    command: >
-      bash -c "
-        airflow db migrate &&
-        airflow users create --username admin --password admin
-          --firstname Admin --lastname Admin --role Admin --email admin@example.com
-      "
+    command: bash -c "airflow db migrate && airflow users create --username admin --password admin --firstname Admin --lastname Admin --role Admin --email admin@example.com"
     # restart: no → this container must not be restarted after it exits
     restart: "no"
 

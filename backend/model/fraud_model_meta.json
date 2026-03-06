@@ -1,0 +1,12 @@
+{
+  "trained_at": "2026-03-06T14:01:19.209751",
+  "auc": 1.0,
+  "features": [
+    "amount",
+    "hour",
+    "merchant_category",
+    "distance_from_home",
+    "num_transactions_last_24h"
+  ],
+  "auc_threshold": 0.85
+}
