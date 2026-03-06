@@ -74,7 +74,7 @@ def extract_transactions(**ctx):
     n_legit = n - n_fraud
 
     legit = pd.DataFrame({
-        "amount":                    np.random.exponential(60, n_legit),
+        "amount":                    np.random.exponential(300, n_legit),
         "hour":                      np.random.randint(8, 22, n_legit),
         "merchant_category":         np.random.randint(0, 5, n_legit),
         "distance_from_home":        np.random.exponential(12, n_legit),
@@ -281,7 +281,7 @@ default_args = {
 with DAG(
     dag_id="fraud_model_nightly_retrain",
     description="Nightly retraining of the fraud detection model with drift detection",
-    schedule_interval=None,   # TODO (Part 5.4): replace None with the correct cron expression for 19:00 local time
+    schedule_interval='0 18 * * *',   # TODO (Part 5.4): replace None with the correct cron expression for 19:00 local time
     start_date=datetime(2025, 1, 1),
     catchup=False,
     default_args=default_args,

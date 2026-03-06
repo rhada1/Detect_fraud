@@ -49,3 +49,11 @@ jobs:
       - name: Trigger Render deploy hook
         run: |
           curl -fsS -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
+      - name: Wait for Render to restart
+        run: sleep 30
+
+      - name: Smoke test – /health endpoint
+        run: |
+          curl -fsS "${{ secrets.RENDER_URL }}/health" \
+            || (echo "❌ Health check failed – API not responding" && exit 1)
+          echo "✅ API is up and responding"
